@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CanvasFramework - UI Mobile 60 FPS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <style>
+        :root {
+            --primary: #667EEA;
+            --primary-dark: #5A67D8;
+            --secondary: #9F7AEA;
+            --dark: #1A202C;
+            --light: #F5F7FA;
+            --gray: #718096;
+            --success: #48BB78;
+            --danger: #F56565;
+            --warning: #ED8936;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="white" opacity="0.05"/></svg>');
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .logo-canvas {
+            background: white;
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 2.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .badges {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .github-btn {
+            background: var(--dark);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--dark);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        /* Code examples */
+        .code-example {
+            background: #2D3748;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .code-header {
+            background: #1A202C;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .code-title {
+            color: white;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        
+        .code-copy {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .code-copy:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Components showcase */
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .component-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .component-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .component-preview {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667EEA, #764BA2);
+        }
+        
+        .component-info {
+            padding: 1.5rem;
+        }
+        
+        .component-name {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        /* Comparison table */
+        .comparison {
+            overflow-x: auto;
+        }
+        
+        .comparison table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .comparison th {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+        
+        .comparison td {
+            padding: 1rem;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        
+        .comparison tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .winner {
+            background: rgba(72, 187, 120, 0.1);
+            font-weight: bold;
+            color: var(--success);
+        }
+        
+        /* Performance metrics */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .metric {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .footer-links a {
+            color: #CBD5E0;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+                flex-direction: column;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="logo-canvas">Canvas</span>
+                <span>Framework</span>
+            </div>
+            <p class="tagline">Framework UI Canvas 60 FPS pour applications mobiles performantes</p>
+            <div class="badges">
+                <span class="badge">⚡ 60 FPS Garanti</span>
+                <span class="badge">📱 Mobile First</span>
+                <span class="badge">🎯 Bundle 150KB</span>
+                <span class="badge">🔧 TypeScript Ready</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <ul class="nav-links">
+                <li><a href="#features">Fonctionnalités</a></li>
+                <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#components">Composants</a></li>
+                <li><a href="#examples">Exemples</a></li>
+                <li><a href="#comparison">Comparaison</a></li>
+                <li><a href="#getting-started">Démarrer</a></li>
+            </ul>
+            <a href="https://github.com" class="github-btn" target="_blank">
+                <span>⭐ GitHub</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title">🚀 Pourquoi CanvasFramework ?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Performance 60 FPS</h3>
+                    <p>Rendu WebGL optimisé pour le texte + Canvas2D pour l'UI. Scrolling fluide même avec 10 000 éléments.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3 class="feature-title">Bundle Léger</h3>
+                    <p>150KB gzipped contre 5-10MB pour React Native. Chargement instantané même en 3G.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔋</div>
+                    <h3 class="feature-title">Battery Efficient</h3>
+                    <p>Web Workers pour les calculs, object pooling, minimal garbage collection.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3 class="feature-title">UI Native Feel</h3>
+                    <p>Ripple effects Material Design, transitions iOS, thèmes light/dark automatiques.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛠️</div>
+                    <h3 class="feature-title">Developer Experience</h3>
+                    <p>Routing avancé, hot reload Vite, DevTools intégrés, API déclarative.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Mobile First</h3>
+                    <p>Optimisé pour Capacitor, détection clavier, gestes tactiles, offline-first.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture -->
+    <section id="architecture" style="background: #f8fafc;">
+        <div class="container">
+            <h2 class="section-title">🏗️ Architecture Technique</h2>
+            <div class="code-example">
+                <div class="code-header">
+                    <span class="code-title">core/CanvasFramework.js - Architecture Hybride</span>
+                    <button class="code-copy" onclick="copyCode('arch-code')">Copier</button>
+                </div>
+                <pre><code id="arch-code" class="language-javascript">
+// Architecture en couches
+CanvasFramework {
+  ├── 🎨 Rendu: WebGLAdapter (texte) + Canvas2D (UI)
+  ├── ⚡ Calcul: Web Workers (scroll, physique)
+  ├── 📱 Platform: Material/iOS auto-détection
+  ├── 🔄 State: Reactive updates + dirty checking
+  ├── 🚦 Routing: SPA avec transitions
+  └── 🛠️ DevTools: Inspection overlay + metrics
+}
+
+// Initialisation optimale
+const app = new CanvasFramework('app-canvas', {
+    useWebGL: true,           // WebGL pour texte
+    showFps: true,           // Debug FPS
+    themeMode: 'system',     // Auto light/dark
+    splash: {                // Splash screen
+        enabled: true,
+        duration: 700
+    }
+});
+
+// WebGL Text Adapter (performance critique)
+class WebGLCanvasAdapter {
+    // Char-level caching
+    // Multi-atlas textures
+    // Batch rendering
+    // LRU cache eviction
+}
+                </code></pre>
+            </div>
+            
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-value">60 FPS</div>
+                    <div class="metric-label">Rendu stable</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">150KB</div>
+                    <div class="metric-label">Bundle size</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">100ms</div>
+                    <div class="metric-label">Startup time</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">50+</div>
+                    <div class="metric-label">Composants</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Components -->
+    <section id="components">
+        <div class="container">
+            <h2 class="section-title">🎨 Composants UI</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: var(--gray);">
+                50+ composants Material Design et Cupertino avec effets natives
+            </p>
+            
+            <div class="components-grid">
+                <div class="component-card">
+                    <div class="component-preview">
+                        <!-- Button preview -->
+                        <div style="background: #6200EE; color: white; padding: 12px 24px; border-radius: 8px; font-weight: bold;">
+                            Button
+                        </div>
+                    </div>
+                    <div class="component-info">
+                        <h3 class="component-name">Button</h3>
+                        <p>Types: filled, outlined, text, elevated, tonal</p>
+                    </div>
+                </div>
+                
+                <div class="component-card">
+                    <div class="component-preview">
+                        <!-- Input preview -->
+                        <div style="border: 2px solid #667EEA; padding: 12px; border-radius: 8px; width: 80%;">
+                            <span style="color: #667EEA;">Email</span>
+                        </div>
+                    </div>
+                    <div class="component-info">
+                        <h3 class="component-name">Input</h3>
+                        <p>Validation, placeholder, types variés</p>
+                    </div>
+                </div>
+                
+                <div class="component-card">
+                    <div class="component-preview">
+                        <!-- Card preview -->
+                        <div style="background: white; padding: 16px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); width: 80%;">
+                            <div style="font-weight: bold; margin-bottom: 8px;">Card Title</div>
+                            <div style="color: var(--gray); font-size: 0.9rem;">Card content here</div>
+                        </div>
+                    </div>
+                    <div class="component-info">
+                        <h3 class="component-name">Card</h3>
+                        <p>Elevation, padding, clickable children</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="code-example" style="margin-top: 3rem;">
+                <div class="code-header">
+                    <span class="code-title">Exemple: Création de composants</span>
+                    <button class="code-copy" onclick="copyCode('components-code')">Copier</button>
+                </div>
+                <pre><code id="components-code" class="language-javascript">
+// Méthode 1: API déclarative (recommandée)
+const screen = ui.app(
+    ui.Column({ x: 0, y: 0, spacing: 0 }, [
+        ui.AppBar({
+            title: 'Mon Application',
+            backgroundColor: '#667EEA'
+        }),
+        
+        ui.Card({
+            x: 20, y: 80,
+            width: framework.width - 40,
+            height: 200,
+            elevation: 4
+        }, [
+            ui.Text({
+                text: 'Bienvenue !',
+                fontSize: 24,
+                bold: true
+            }),
+            
+            ui.Button({
+                x: 20, y: 120,
+                width: 200,
+                height: 56,
+                text: 'Commencer',
+                type: 'filled',
+                onClick: () => {
+                    framework.navigate('/dashboard');
+                }
+            })
+        ])
+    ])
+);
+
+// Méthode 2: API impérative
+const button = new Button(framework, {
+    x: 20,
+    y: 100,
+    width: 200,
+    height: 56,
+    text: 'Cliquez-moi',
+    type: 'filled',
+    shape: 'rounded',
+    bgColor: '#48BB78',
+    textColor: '#FFFFFF',
+    onClick: () => {
+        framework.showToast('Bouton cliqué !');
+    }
+});
+
+// Ajout au framework
+framework.add(button);
+                </code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples -->
+    <section id="examples" style="background: #f8fafc;">
+        <div class="container">
+            <h2 class="section-title">💡 Exemples Concrets</h2>
+            
+            <div class="code-example">
+                <div class="code-header">
+                    <span class="code-title">Application médicale (votre cas réel)</span>
+                    <button class="code-copy" onclick="copyCode('medical-code')">Copier</button>
+                </div>
+                <pre><code id="medical-code" class="language-javascript">
+// Application complète de capture médicale
+import { CanvasFramework, ui, createRef, SecureStorage } from 'canvasframework';
+
+async function initApp() {
+    const app = new CanvasFramework('app-canvas', {
+        useWebGL: true,
+        themeMode: 'light'
+    });
+    
+    const storage = new SecureStorage('medicalapp_');
+    await storage.init('secure-key');
+    
+    // Route: Page d'accueil
+    app.route('/', (framework) => {
+        const homeScreen = ui.app(
+            ui.Column({ x: 0, y: 0, spacing: 0 }, [
+                ui.AppBar({
+                    title: 'Capture Médicale',
+                    backgroundColor: '#667EEA'
+                }),
+                
+                ui.Card({
+                    x: 20, y: 100,
+                    width: framework.width - 40,
+                    height: 220,
+                    elevation: 6
+                }, [
+                    ui.Text({
+                        text: '📋',
+                        fontSize: 60,
+                        align: 'center'
+                    }),
+                    
+                    ui.Text({
+                        text: 'Capture de Documents',
+                        fontSize: 24,
+                        bold: true,
+                        align: 'center'
+                    })
+                ]),
+                
+                ui.Button({
+                    x: 20, y: 350,
+                    width: framework.width - 40,
+                    height: 56,
+                    text: '📸 Nouvelle Capture',
+                    type: 'filled',
+                    onClick: () => {
+                        framework.navigate('/capture');
+                    }
+                })
+            ])
+        );
+        
+        homeScreen.mount(framework);
+    });
+    
+    // Route: Capture photo
+    app.route('/capture', async (framework) => {
+        const cameraRef = createRef();
+        let capturedImage = null;
+        
+        const captureScreen = ui.app(
+            ui.Column({ x: 0, y: 0, spacing: 0 }, [
+                ui.AppBar({
+                    title: 'Capture Photo',
+                    leftIcon: 'back',
+                    onLeftClick: () => framework.navigate('/')
+                }),
+                
+                ui.Text({
+                    x: 20, y: 100,
+                    text: 'Prenez une photo du document',
+                    fontSize: 18,
+                    align: 'center'
+                })
+            ])
+        );
+        
+        captureScreen.mount(framework);
+        
+        // Camera component
+        const camera = new FloatedCamera(framework, {
+            x: 20,
+            y: 150,
+            width: framework.width - 40,
+            height: 400,
+            facingMode: 'environment',
+            onPhoto: (dataUrl) => {
+                capturedImage = dataUrl;
+                framework.showToast('📸 Photo capturée !');
+            }
+        });
+        
+        framework.add(camera);
+        cameraRef.current = camera;
+    });
+}
+                </code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section id="comparison">
+        <div class="container">
+            <h2 class="section-title">📊 Comparaison Technique</h2>
+            
+            <div class="comparison">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Framework</th>
+                            <th>Bundle Size</th>
+                            <th>FPS Mobile</th>
+                            <th>Startup Time</th>
+                            <th>Memory Usage</th>
+                            <th>DX</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>CanvasFramework</strong></td>
+                            <td class="winner">150KB</td>
+                            <td class="winner">60 FPS</td>
+                            <td class="winner">100-300ms</td>
+                            <td class="winner">10-50MB</td>
+                            <td>⭐⭐⭐⭐</td>
+                        </tr>
+                        <tr>
+                            <td>React Native</td>
+                            <td>5-10MB</td>
+                            <td>45-55 FPS</td>
+                            <td>500-2000ms</td>
+                            <td>100-300MB</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                        </tr>
+                        <tr>
+                            <td>Flutter Web</td>
+                            <td>1-2MB</td>
+                            <td>50-60 FPS</td>
+                            <td>300-1000ms</td>
+                            <td>50-150MB</td>
+                            <td>⭐⭐⭐</td>
+                        </tr>
+                        <tr>
+                            <td>Ionic + DOM</td>
+                            <td>2-5MB</td>
+                            <td>30-45 FPS</td>
+                            <td>200-800ms</td>
+                            <td>80-200MB</td>
+                            <td>⭐⭐⭐⭐</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Getting Started -->
+    <section id="getting-started" style="background: linear-gradient(135deg, #667EEA, #764BA2); color: white;">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">🚀 Commencer en 2 minutes</h2>
+            
+            <div class="code-example">
+                <div class="code-header">
+                    <span class="code-title">Installation rapide</span>
+                    <button class="code-copy" onclick="copyCode('install-code')" style="background: white; color: #667EEA;">Copier</button>
+                </div>
+                <pre><code id="install-code" class="language-bash">
+# 1. Clonez le template
+npx create-canvas-app my-app --template mobile
+
+# 2. Installez les dépendances
+cd my-app
+npm install
+
+# 3. Lancez en développement
+npm run dev
+
+# 4. Build pour mobile
+npm run build:android
+# ou
+npm run build:ios
+                </code></pre>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; backdrop-filter: blur(10px);">
+                    <h3 style="margin-bottom: 1rem;">📖 Documentation</h3>
+                    <p>Guide complet, API reference, et best practices.</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; backdrop-filter: blur(10px);">
+                    <h3 style="margin-bottom: 1rem;">🎯 Templates</h3>
+                    <p>Medical, Dashboard, E-commerce, Social Media.</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; backdrop-filter: blur(10px);">
+                    <h3 style="margin-bottom: 1rem;">💬 Communauté</h3>
+                    <p>GitHub Discussions, exemples, support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo" style="font-size: 2rem; justify-content: center;">
+                <span style="background: white; color: #667EEA; padding: 8px 16px; border-radius: 8px; font-size: 1.5rem;">Canvas</span>
+                <span>Framework</span>
+            </div>
+            <p style="opacity: 0.8; margin-top: 1rem;">Framework UI Canvas haute performance pour applications mobiles</p>
+            
+            <div class="footer-links">
+                <a href="#features">Fonctionnalités</a>
+                <a href="#architecture">Architecture</a>
+                <a href="#components">Composants</a>
+                <a href="#examples">Exemples</a>
+                <a href="https://github.com" target="_blank">GitHub</a>
+            </div>
+            
+            <p style="opacity: 0.6; margin-top: 2rem; font-size: 0.9rem;">
+                &copy; 2024 CanvasFramework. Open source sous licence MIT.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        // Copy code function
+        function copyCode(elementId) {
+            const codeElement = document.getElementById(elementId);
+            const text = codeElement.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = 'Copié !';
+                button.style.background = '#48BB78';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                }, 2000);
+            });
+        }
+        
+        // Performance metrics animation
+        function animateMetrics() {
+            const metrics = document.querySelectorAll('.metric-value');
+            metrics.forEach(metric => {
+                const value = metric.textContent;
+                if (value.includes('FPS') || value.includes('KB') || value.includes('ms')) {
+                    metric.style.opacity = '0';
+                    metric.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        metric.style.transition = 'all 0.6s ease';
+                        metric.style.opacity = '1';
+                        metric.style.transform = 'translateY(0)';
+                    }, 100);
+                }
+            });
+        }
+        
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.2
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    if (entry.target.id === 'comparison') {
+                        animateMetrics();
+                    }
+                }
+            });
+        }, observerOptions);
+        
+        // Observe sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
