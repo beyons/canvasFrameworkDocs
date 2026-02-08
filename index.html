@@ -6,7 +6,7 @@
     <title>CanvasFramework - UI Mobile 60 FPS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
     <style>
-        :root {
+	:root {
             --primary: #667EEA;
             --primary-dark: #5A67D8;
             --secondary: #9F7AEA;
@@ -517,10 +517,205 @@
                 grid-template-columns: 1fr;
             }
         }
+        /* Ajout de styles pour la nouvelle section */
+        .comprehensive-components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .component-detail-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .component-detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+        
+        .component-header {
+            padding: 1.5rem 1.5rem 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .component-icon {
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667EEA, #764BA2);
+            color: white;
+        }
+        
+        .component-header-info h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            color: var(--dark);
+        }
+        
+        .component-platform-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .component-body {
+            padding: 1.5rem;
+        }
+        
+        .component-features {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+        
+        .component-features li {
+            padding: 0.3rem 0;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .component-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        /* Styles pour les cards de managers */
+        .manager-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .manager-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .manager-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .manager-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .manager-features {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .manager-features ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .manager-features li {
+            padding: 0.3rem 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Styles pour les layout components */
+        .layout-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .layout-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .layout-visual {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 1rem;
+            position: relative;
+            background: #f5f7fa;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        /* Styles existants préservés */
+        /* ... vos styles existants restent inchangés ... */
+        
+        /* Ajout d'un style pour les badges de catégorie */
+        .category-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-ui {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+        
+        .category-layout {
+            background: linear-gradient(135deg, #48BB78, #38A169);
+            color: white;
+        }
+        
+        .category-utility {
+            background: linear-gradient(135deg, #ED8936, #DD6B20);
+            color: white;
+        }
+        
+        .category-security {
+            background: linear-gradient(135deg, #F56565, #C53030);
+            color: white;
+        }
+        
+        .category-performance {
+            background: linear-gradient(135deg, #9F7AEA, #805AD5);
+            color: white;
+        }
     </style>
+    <!-- Vos styles existants restent ici -->
 </head>
 <body>
-    <!-- Header -->
+   <!-- Header -->
     <header>
         <div class="container">
             <div class="logo">
@@ -570,7 +765,7 @@
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🎨</div>
-                    <h3 class="feature-title">50+ Composants UI</h3>
+                    <h3 class="feature-title">70+ Composants UI</h3>
                     <p>Switch, Slider, RadioButton, ProgressBar, List, Snackbar, Input, FAB, Dialog, Checkbox, etc.</p>
                 </div>
                 <div class="feature-card">
@@ -614,7 +809,7 @@ CanvasFramework {
   │   ├── Canvas2D (UI components)
   │   └── AnimationEngine (Web Workers + easing)
   │
-  ├── 📦 COMPONENTS (50+)
+  ├── 📦 COMPONENTS (70+)
   │   ├── UI Controls: Switch, Slider, RadioButton, Checkbox
   │   ├── Inputs: Input, TextField, PasswordInput, SearchInput
   │   ├── Navigation: Drawer, BottomSheet, Tabs, Stepper
@@ -660,7 +855,7 @@ const app = new CanvasFramework('app-canvas', {
                     <div class="metric-label">Animation Engine</div>
                 </div>
                 <div class="metric">
-                    <div class="metric-value">50+</div>
+                    <div class="metric-value">70+</div>
                     <div class="metric-label">Composants UI</div>
                 </div>
                 <div class="metric">
@@ -1444,7 +1639,885 @@ npx cap sync
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Nouvelle Section: Components Avancés -->
+    <section id="advanced-components" style="background: #f8fafc;">
+        <div class="container">
+            <h2 class="section-title">🎯 Composants Avancés</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: var(--gray);">
+                Nouveaux composants UI avancés avec animations et interactions riches
+            </p>
+            
+            <div class="comprehensive-components">
+                <!-- Accordion -->
+                <div class="component-detail-card">
+                    <div class="component-header">
+                        <div class="component-icon">📑</div>
+                        <div class="component-header-info">
+                            <h3>Accordion</h3>
+                            <div class="component-platform-tags">
+                                <span class="category-badge category-ui">UI</span>
+                                <span class="badge">Material</span>
+                                <span class="badge">Cupertino</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-body">
+                        <p style="color: var(--gray); margin-bottom: 1rem;">
+                            Section extensible avec animations fluides et styles Material/iOS.
+                        </p>
+                        <div class="component-features">
+                            <li>Ripple effect centré Material</li>
+                            <li>Animation d'expansion fluide</li>
+                            <li>Support d'icônes personnalisées</li>
+                            <li>Clustering de texte automatique</li>
+                            <li>Callback onToggle personnalisable</li>
+                        </div>
+                        <div class="code-example" style="margin-top: 1rem; background: #2a2d3e;">
+                            <div class="code-header">
+                                <span class="code-title">accordion.js</span>
+                                <button class="code-copy" onclick="copyCode('accordion-code')">Copier</button>
+                            </div>
+                            <pre style="margin: 0;"><code id="accordion-code" class="language-javascript">
+const accordion = new Accordion(framework, {
+    title: 'Paramètres avancés',
+    content: 'Configuration détaillée des préférences...',
+    icon: '⚙️',
+    expanded: false,
+    onToggle: (expanded) => {
+        console.log('Accordion:', expanded ? 'ouvert' : 'fermé');
+    }
+});
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AudioPlayer -->
+                <div class="component-detail-card">
+                    <div class="component-header">
+                        <div class="component-icon">🎵</div>
+                        <div class="component-header-info">
+                            <h3>AudioPlayer</h3>
+                            <div class="component-platform-tags">
+                                <span class="category-badge category-ui">UI</span>
+                                <span class="badge">Direct Events</span>
+                                <span class="badge">60 FPS</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-body">
+                        <p style="color: var(--gray); margin-bottom: 1rem;">
+                            Lecteur audio haute performance avec gestion directe des événements.
+                        </p>
+                        <div class="component-features">
+                            <li>Événements directs (bypass framework)</li>
+                            <li>Interface utilisateur native</li>
+                            <li>Gestion de cache audio</li>
+                            <li>Contrôles de volume</li>
+                            <li>Time tracking précis</li>
+                        </div>
+                        <div class="code-example" style="margin-top: 1rem; background: #2a2d3e;">
+                            <div class="code-header">
+                                <span class="code-title">audio-player.js</span>
+                                <button class="code-copy" onclick="copyCode('audio-code')">Copier</button>
+                            </div>
+                            <pre style="margin: 0;"><code id="audio-code" class="language-javascript">
+const player = new AudioPlayer(framework, {
+    src: '/audio/track.mp3',
+    onPlay: () => console.log('Playing...'),
+    onPause: () => console.log('Paused'),
+    onEnded: () => console.log('Finished')
+});
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SwipeableListItem -->
+                <div class="component-detail-card">
+                    <div class="component-header">
+                        <div class="component-icon">↔️</div>
+                        <div class="component-header-info">
+                            <h3>SwipeableListItem</h3>
+                            <div class="component-platform-tags">
+                                <span class="category-badge category-ui">UI</span>
+                                <span class="badge">Swipe Actions</span>
+                                <span class="badge">Animation</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-body">
+                        <p style="color: var(--gray); margin-bottom: 1rem;">
+                            Item de liste avec swipe horizontal pour actions rapides.
+                        </p>
+                        <div class="component-features">
+                            <li>Swipe gauche/droite personnalisable</li>
+                            <li>Actions multiples configurables</li>
+                            <li>Feedback haptique optionnel</li>
+                            <li>Threshold ajustable</li>
+                            <li>Événements bindés automatiquement</li>
+                        </div>
+                        <div class="code-example" style="margin-top: 1rem; background: #2a2d3e;">
+                            <div class="code-header">
+                                <span class="code-title">swipeable-item.js</span>
+                                <button class="code-copy" onclick="copyCode('swipeable-code')">Copier</button>
+                            </div>
+                            <pre style="margin: 0;"><code id="swipeable-code" class="language-javascript">
+const item = new SwipeableListItem(framework, {
+    title: 'Document médical',
+    subtitle: 'Capture du 15/12/2024',
+    leftActions: [{
+        text: 'Archiver',
+        color: '#388E3C',
+        onClick: () => archiveDocument()
+    }],
+    rightActions: [{
+        text: 'Supprimer',
+        color: '#D32F2F',
+        onClick: () => deleteDocument()
+    }]
+});
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- BottomNavigationBar -->
+                <div class="component-detail-card">
+                    <div class="component-header">
+                        <div class="component-icon">📱</div>
+                        <div class="component-header-info">
+                            <h3>BottomNavigationBar</h3>
+                            <div class="component-platform-tags">
+                                <span class="category-badge category-ui">UI</span>
+                                <span class="badge">Material</span>
+                                <span class="badge">Cupertino</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-body">
+                        <p style="color: var(--gray); margin-bottom: 1rem;">
+                            Barre de navigation inférieure avec design Material/iOS.
+                        </p>
+                        <div class="component-features">
+                            <li>Ripple effect Material</li>
+                            <li>Animation iOS smooth</li>
+                            <li>Iconographie vectorielle</li>
+                            <li>Blur background iOS</li>
+                            <li>Gestion mémoire optimisée</li>
+                        </div>
+                        <div class="code-example" style="margin-top: 1rem; background: #2a2d3e;">
+                            <div class="code-header">
+                                <span class="code-title">bottom-nav.js</span>
+                                <button class="code-copy" onclick="copyCode('bottomnav-code')">Copier</button>
+                            </div>
+                            <pre style="margin: 0;"><code id="bottomnav-code" class="language-javascript">
+const navBar = new BottomNavigationBar(framework, {
+    items: [
+        { icon: 'home', label: 'Accueil' },
+        { icon: 'search', label: 'Recherche' },
+        { icon: 'favorite', label: 'Favoris' },
+        { icon: 'person', label: 'Profil' }
+    ],
+    selectedIndex: 0,
+    onChange: (index, item) => {
+        framework.navigate(`/${item.label}`);
+    }
+});
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chart -->
+                <div class="component-detail-card">
+                    <div class="component-header">
+                        <div class="component-icon">📊</div>
+                        <div class="component-header-info">
+                            <h3>Chart</h3>
+                            <div class="component-platform-tags">
+                                <span class="category-badge category-ui">UI</span>
+                                <span class="badge">Graphiques</span>
+                                <span class="badge">Animations</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-body">
+                        <p style="color: var(--gray); margin-bottom: 1rem;">
+                            Composant de graphiques avancés avec 5 types de visualisation.
+                        </p>
+                        <div class="component-features">
+                            <li>Line, Bar, Pie, Doughnut, Area</li>
+                            <li>Animations 60 FPS</li>
+                            <li>Interaction hover/click</li>
+                            <li>Légende interactive</li>
+                            <li>Mise à jour en temps réel</li>
+                        </div>
+                        <div class="code-example" style="margin-top: 1rem; background: #2a2d3e;">
+                            <div class="code-header">
+                                <span class="code-title">chart.js</span>
+                                <button class="code-copy" onclick="copyCode('chart-code')">Copier</button>
+                            </div>
+                            <pre style="margin: 0;"><code id="chart-code" class="language-javascript">
+const chart = new Chart(framework, {
+    type: 'line',
+    data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr'],
+        datasets: [{
+            label: 'Patients',
+            data: [65, 59, 80, 81],
+            color: '#6200EE'
+        }]
+    },
+    animated: true,
+    showLegend: true
+});
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CircularProgress -->
+                <div class="component-detail-card">
+                    <div class="component-header">
+                        <div class="component-icon">⭕</div>
+                        <div class="component-header-info">
+                            <h3>CircularProgress</h3>
+                            <div class="component-platform-tags">
+                                <span class="category-badge category-ui">UI</span>
+                                <span class="badge">Material</span>
+                                <span class="badge">Cupertino</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-body">
+                        <p style="color: var(--gray); margin-bottom: 1rem;">
+                            Spinner circulaire avec animations Material/iOS.
+                        </p>
+                        <div class="component-features">
+                            <li>Mode déterminé/indéterminé</li>
+                            <li>Animation Material (arc rotatif)</li>
+                            <li>Animation iOS (12 traits)</li>
+                            <li>Custom colors & line width</li>
+                            <li>Progression 0-100%</li>
+                        </div>
+                        <div class="code-example" style="margin-top: 1rem; background: #2a2d3e;">
+                            <div class="code-header">
+                                <span class="code-title">progress.js</span>
+                                <button class="code-copy" onclick="copyCode('progress-code')">Copier</button>
+                            </div>
+                            <pre style="margin: 0;"><code id="progress-code" class="language-javascript">
+// Mode indéterminé
+const spinner = new CircularProgress(framework, {
+    size: 40,
+    indeterminate: true
+});
+
+// Mode progressif
+const progress = new CircularProgress(framework, {
+    size: 60,
+    indeterminate: false,
+    progress: 75
+});
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Deuxième rangée de composants -->
+            <div class="comprehensive-components" style="margin-top: 2rem;">
+                
+                <!-- DatePicker -->
+                <div class="component-detail-card">
+                    <div class="component-header">
+                        <div class="component-icon">📅</div>
+                        <div class="component-header-info">
+                            <h3>DatePicker</h3>
+                            <div class="component-platform-tags">
+                                <span class="category-badge category-ui">UI</span>
+                                <span class="badge">Material</span>
+                                <span class="badge">Cupertino</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-body">
+                        <p style="color: var(--gray); margin-bottom: 1rem;">
+                            Sélecteur de date avec design natif Android/iOS.
+                        </p>
+                        <div class="component-features">
+                            <li>Dialog Material DatePicker</li>
+                            <li>Wheel picker iOS</li>
+                            <li>Min/Max date constraints</li>
+                            <li>Custom header colors</li>
+                            <li>Modal integration</li>
+                        </div>
+                        <div class="code-example" style="margin-top: 1rem; background: #2a2d3e;">
+                            <div class="code-header">
+                                <span class="code-title">date-picker.js</span>
+                                <button class="code-copy" onclick="copyCode('datepicker-code')">Copier</button>
+                            </div>
+                            <pre style="margin: 0;"><code id="datepicker-code" class="language-javascript">
+const datePicker = new DatePicker(framework, {
+    selectedDate: new Date(),
+    minDate: new Date(2020, 0, 1),
+    maxDate: new Date(2030, 11, 31),
+    label: 'Date de naissance',
+    onChange: (date) => {
+        console.log('Date sélectionnée:', date);
+    }
+});
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Divider -->
+                <div class="component-detail-card">
+                    <div class="component-header">
+                        <div class="component-icon">📏</div>
+                        <div class="component-header-info">
+                            <h3>Divider</h3>
+                            <div class="component-platform-tags">
+                                <span class="category-badge category-ui">UI</span>
+                                <span class="badge">Layout</span>
+                                <span class="badge">Material</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-body">
+                        <p style="color: var(--gray); margin-bottom: 1rem;">
+                            Séparateur visuel avec variantes Material Design.
+                        </p>
+                        <div class="component-features">
+                            <li>Horizontal & vertical</li>
+                            <li>Variantes: full, inset, middle</li>
+                            <li>Styles: solid, dashed, dotted</li>
+                            <li>Thickness Material/iOS</li>
+                            <li>Color customization</li>
+                        </div>
+                        <div class="code-example" style="margin-top: 1rem; background: #2a2d3e;">
+                            <div class="code-header">
+                                <span class="code-title">divider.js</span>
+                                <button class="code-copy" onclick="copyCode('divider-code')">Copier</button>
+                            </div>
+                            <pre style="margin: 0;"><code id="divider-code" class="language-javascript">
+const divider = new Divider(framework, {
+    orientation: 'horizontal',
+    variant: 'inset',
+    style: 'dashed',
+    margin: 16,
+    color: 'rgba(0, 0, 0, 0.12)'
+});
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- MorphingFAB -->
+                <div class="component-detail-card">
+                    <div class="component-header">
+                        <div class="component-icon">✨</div>
+                        <div class="component-header-info">
+                            <h3>MorphingFAB</h3>
+                            <div class="component-platform-tags">
+                                <span class="category-badge category-ui">UI</span>
+                                <span class="badge">Animation</span>
+                                <span class="badge">Material</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-body">
+                        <p style="color: var(--gray); margin-bottom: 1rem;">
+                            FAB qui se transforme en toolbar ou searchbar.
+                        </p>
+                        <div class="component-features">
+                            <li>Transformation toolbar/searchbar</li>
+                            <li>Animation morph 60 FPS</li>
+                            <li>Actions configurables</li>
+                            <li>Search avec input HTML</li>
+                            <li>Auto-hide/show</li>
+                        </div>
+                        <div class="code-example" style="margin-top: 1rem; background: #2a2d3e;">
+                            <div class="code-header">
+                                <span class="code-title">morphing-fab.js</span>
+                                <button class="code-copy" onclick="copyCode('morphing-code')">Copier</button>
+                            </div>
+                            <pre style="margin: 0;"><code id="morphing-code" class="language-javascript">
+const fab = new MorphingFAB(framework, {
+    morphType: 'toolbar',
+    actions: [
+        { icon: '📁', label: 'Save', action: save },
+        { icon: '📤', label: 'Export', action: export },
+        { icon: '📧', label: 'Share', action: share }
+    ],
+    icon: '+',
+    onClick: () => fab.toggle()
+});
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- MultiSelectDialog -->
+                <div class="component-detail-card">
+                    <div class="component-header">
+                        <div class="component-icon">☑️</div>
+                        <div class="component-header-info">
+                            <h3>MultiSelectDialog</h3>
+                            <div class="component-platform-tags">
+                                <span class="category-badge category-ui">UI</span>
+                                <span class="badge">Modal</span>
+                                <span class="badge">Selection</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-body">
+                        <p style="color: var(--gray); margin-bottom: 1rem;">
+                            Dialog de sélection multiple avec checkboxes.
+                        </p>
+                        <div class="component-features">
+                            <li>Sélection multiple avec checkboxes</li>
+                            <li>Liste scrollable auto-ajustée</li>
+                            <li>Buttons annuler/valider</li>
+                            <li>Callback onSelect</li>
+                            <li>Style Material Design</li>
+                        </div>
+                        <div class="code-example" style="margin-top: 1rem; background: #2a2d3e;">
+                            <div class="code-header">
+                                <span class="code-title">multiselect.js</span>
+                                <button class="code-copy" onclick="copyCode('multiselect-code')">Copier</button>
+                            </div>
+                            <pre style="margin: 0;"><code id="multiselect-code" class="language-javascript">
+const multiSelect = new MultiSelectDialog(framework, {
+    title: 'Sélectionner les catégories',
+    options: ['Urgent', 'Important', 'Routine', 'Suivi'],
+    selectedIndices: [0, 2],
+    onSelect: (indices, values) => {
+        console.log('Sélectionné:', values);
+    }
+});
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SegmentedControl -->
+                <div class="component-detail-card">
+                    <div class="component-header">
+                        <div class="component-icon">🎚️</div>
+                        <div class="component-header-info">
+                            <h3>SegmentedControl</h3>
+                            <div class="component-platform-tags">
+                                <span class="category-badge category-ui">UI</span>
+                                <span class="badge">Material</span>
+                                <span class="badge">Cupertino</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-body">
+                        <p style="color: var(--gray); margin-bottom: 1rem;">
+                            Contrôle segmenté style iOS/Android.
+                        </p>
+                        <div class="component-features">
+                            <li>Ripple effect Material</li>
+                            <li>Animation iOS smooth</li>
+                            <li>Boutons configurables</li>
+                            <li>Callback onClick</li>
+                            <li>Design platform-specific</li>
+                        </div>
+                        <div class="code-example" style="margin-top: 1rem; background: #2a2d3e;">
+                            <div class="code-header">
+                                <span class="code-title">segmented.js</span>
+                                <button class="code-copy" onclick="copyCode('segmented-code')">Copier</button>
+                            </div>
+                            <pre style="margin: 0;"><code id="segmented-code" class="language-javascript">
+const segmented = new SegmentedControl(framework, {
+    buttons: [
+        { text: 'Jour', onClick: () => setView('day') },
+        { text: 'Semaine', onClick: () => setView('week') },
+        { text: 'Mois', onClick: () => setView('month') }
+    ],
+    selectedIndex: 0
+});
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Snackbar -->
+                <div class="component-detail-card">
+                    <div class="component-header">
+                        <div class="component-icon">💬</div>
+                        <div class="component-header-info">
+                            <h3>Snackbar</h3>
+                            <div class="component-platform-tags">
+                                <span class="category-badge category-ui">UI</span>
+                                <span class="badge">Notification</span>
+                                <span class="badge">Material</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-body">
+                        <p style="color: var(--gray); margin-bottom: 1rem;">
+                            Notification avec action et auto-dismiss.
+                        </p>
+                        <div class="component-features">
+                            <li>Animation slide-in/out</li>
+                            <li>Action button optionnel</li>
+                            <li>Auto-dismiss configurable</li>
+                            <li>Style Material Design</li>
+                            <li>Position bottom center</li>
+                        </div>
+                        <div class="code-example" style="margin-top: 1rem; background: #2a2d3e;">
+                            <div class="code-header">
+                                <span class="code-title">snackbar.js</span>
+                                <button class="code-copy" onclick="copyCode('snackbar-code')">Copier</button>
+                            </div>
+                            <pre style="margin: 0;"><code id="snackbar-code" class="language-javascript">
+const snackbar = new Snackbar(framework, {
+    message: 'Document sauvegardé',
+    actionText: 'ANNULER',
+    duration: 4000,
+    onAction: () => {
+        undoLastAction();
+    }
+});
+snackbar.show();
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stepper -->
+                <div class="component-detail-card">
+                    <div class="component-header">
+                        <div class="component-icon">🔢</div>
+                        <div class="component-header-info">
+                            <h3>Stepper</h3>
+                            <div class="component-platform-tags">
+                                <span class="category-badge category-ui">UI</span>
+                                <span class="badge">Material</span>
+                                <span class="badge">Cupertino</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-body">
+                        <p style="color: var(--gray); margin-bottom: 1rem;">
+                            Incrémenteur/décrémenteur avec limites.
+                        </p>
+                        <div class="component-features">
+                            <li>Min/Max/Step configurables</li>
+                            <li>Design Material/iOS</li>
+                            <li>Callback onChange</li>
+                            <li>État disabled visuel</li>
+                            <li>Feedback tactile</li>
+                        </div>
+                        <div class="code-example" style="margin-top: 1rem; background: #2a2d3e;">
+                            <div class="code-header">
+                                <span class="code-title">stepper.js</span>
+                                <button class="code-copy" onclick="copyCode('stepper-code')">Copier</button>
+                            </div>
+                            <pre style="margin: 0;"><code id="stepper-code" class="language-javascript">
+const stepper = new Stepper(framework, {
+    value: 1,
+    min: 0,
+    max: 10,
+    step: 1,
+    onChange: (value) => {
+        console.log('Nouvelle valeur:', value);
+    }
+});
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nouvelle Section: Layout Components -->
+    <section id="layout-components">
+        <div class="container">
+            <h2 class="section-title">🏗️ Layout Components</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: var(--gray);">
+                Système de layout avancé pour interfaces complexes
+            </p>
+            
+            <div class="layout-preview">
+                <!-- Grid -->
+                <div class="layout-card">
+                    <div class="layout-visual">
+                        <div style="position: absolute; top: 10px; left: 10px; width: calc(50% - 15px); height: 60px; background: #667EEA; border-radius: 8px;"></div>
+                        <div style="position: absolute; top: 10px; right: 10px; width: calc(50% - 15px); height: 60px; background: #9F7AEA; border-radius: 8px;"></div>
+                        <div style="position: absolute; bottom: 10px; left: 10px; width: calc(50% - 15px); height: 60px; background: #48BB78; border-radius: 8px;"></div>
+                        <div style="position: absolute; bottom: 10px; right: 10px; width: calc(50% - 15px); height: 60px; background: #ED8936; border-radius: 8px;"></div>
+                    </div>
+                    <h3>Grid</h3>
+                    <p>Layout en grille responsive avec colonnes configurables.</p>
+                </div>
+                
+                <!-- Column -->
+                <div class="layout-card">
+                    <div class="layout-visual">
+                        <div style="position: absolute; top: 10px; left: 20px; right: 20px; height: 30px; background: #667EEA; border-radius: 6px;"></div>
+                        <div style="position: absolute; top: 50px; left: 20px; right: 20px; height: 30px; background: #9F7AEA; border-radius: 6px;"></div>
+                        <div style="position: absolute; bottom: 10px; left: 20px; right: 20px; height: 30px; background: #48BB78; border-radius: 6px;"></div>
+                    </div>
+                    <h3>Column</h3>
+                    <p>Organisation verticale avec alignement et spacing.</p>
+                </div>
+                
+                <!-- Stack -->
+                <div class="layout-card">
+                    <div class="layout-visual">
+                        <div style="position: absolute; top: 20px; left: 20px; right: 20px; height: 40px; background: #667EEA; border-radius: 8px; opacity: 0.8;"></div>
+                        <div style="position: absolute; top: 40px; left: 40px; right: 40px; height: 40px; background: #9F7AEA; border-radius: 8px; opacity: 0.8;"></div>
+                        <div style="position: absolute; top: 60px; left: 60px; right: 60px; height: 40px; background: #48BB78; border-radius: 8px; opacity: 0.8;"></div>
+                    </div>
+                    <h3>Stack</h3>
+                    <p>Superposition de composants avec z-index automatique.</p>
+                </div>
+                
+                <!-- Positioned -->
+                <div class="layout-card">
+                    <div class="layout-visual">
+                        <div style="position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; background: #667EEA; border-radius: 20px;"></div>
+                        <div style="position: absolute; bottom: 10px; right: 10px; width: 40px; height: 40px; background: #ED8936; border-radius: 20px;"></div>
+                    </div>
+                    <h3>Positioned</h3>
+                    <p>Positionnement absolu avec contraintes left/top/right/bottom.</p>
+                </div>
+            </div>
+            
+            <div class="code-example" style="margin-top: 2rem;">
+                <div class="code-header">
+                    <span class="code-title">Exemple: Dashboard avec layout components</span>
+                    <button class="code-copy" onclick="copyCode('layout-code')">Copier</button>
+                </div>
+                <pre><code id="layout-code" class="language-javascript">
+// Dashboard médical avec layout components
+const dashboard = new Stack(framework, {
+    x: 0, y: 0,
+    width: framework.width,
+    children: [
+        // Header
+        new Positioned(framework, {
+            child: new Component(framework, {
+                width: framework.width,
+                height: 60,
+                draw: (ctx) => {
+                    ctx.fillStyle = '#667EEA';
+                    ctx.fillRect(0, 0, this.width, this.height);
+                }
+            }),
+            top: 0,
+            left: 0,
+            right: 0
+        }),
+        
+        // Grid de statistiques
+        new Grid(framework, {
+            x: 20, y: 80,
+            width: framework.width - 40,
+            columns: 2,
+            spacing: 16,
+            children: [
+                new StatCard(framework, { title: 'Patients', value: '156' }),
+                new StatCard(framework, { title: 'Rendez-vous', value: '23' }),
+                new StatCard(framework, { title: 'Documents', value: '89' }),
+                new StatCard(framework, { title: 'Messages', value: '12' })
+            ]
+        }),
+        
+        // Liste des patients
+        new Column(framework, {
+            x: 20, y: 280,
+            width: framework.width - 40,
+            spacing: 8,
+            children: [
+                new ListItem(framework, { title: 'Jean Dupont', subtitle: 'Cardiologie' }),
+                new ListItem(framework, { title: 'Marie Martin', subtitle: 'Pédiatrie' }),
+                new ListItem(framework, { title: 'Pierre Dubois', subtitle: 'Orthopédie' })
+            ]
+        })
+    ]
+});
+                </code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nouvelle Section: Managers Avancés -->
+    <section id="managers" style="background: #f8fafc;">
+        <div class="container">
+            <h2 class="section-title">🛡️ Managers & Utilities Avancés</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: var(--gray);">
+                Systèmes de gestion pour performance, sécurité et stabilité
+            </p>
+            
+            <div class="manager-grid">
+                <!-- ErrorHandler -->
+                <div class="manager-card">
+                    <div class="manager-icon">🚨</div>
+                    <h3>ErrorHandler</h3>
+                    <p style="color: var(--gray); margin: 1rem 0;">
+                        Gestion centralisée des erreurs avec logging et Sentry integration.
+                    </p>
+                    <div class="manager-features">
+                        <ul>
+                            <li>Capture d'erreurs avec contexte</li>
+                            <li>Integration Sentry (production)</li>
+                            <li>Logging détaillé (développement)</li>
+                            <li>Wrapper pour fonctions critiques</li>
+                            <li>Historique des erreurs</li>
+                        </ul>
+                    </div>
+                    <div class="code-example" style="margin-top: 1rem; background: #2a2d3e;">
+                        <div class="code-header">
+                            <span class="code-title">error-handler.js</span>
+                            <button class="code-copy" onclick="copyCode('errorhandler-code')">Copier</button>
+                        </div>
+                        <pre style="margin: 0;"><code id="errorhandler-code" class="language-javascript">
+const errorHandler = new ErrorHandler({
+    sentryDsn: 'your-dsn-here',
+    environment: process.env.NODE_ENV,
+    logLevel: 'error'
+});
+
+// Wrapper sécurisé
+const safeFunction = errorHandler.wrap(riskyFunction, 'medical-data-process');
+
+// Capture manuelle
+try {
+    riskyOperation();
+} catch (error) {
+    errorHandler.captureError(error, {
+        operation: 'data-sync',
+        userId: '123'
+    });
+}
+                        </code></pre>
+                    </div>
+                </div>
+                
+                <!-- MemoryManager -->
+                <div class="manager-card">
+                    <div class="manager-icon">💾</div>
+                    <h3>MemoryManager</h3>
+                    <p style="color: var(--gray); margin: 1rem 0;">
+                        Gestion intelligente de la mémoire avec cache et nettoyage automatique.
+                    </p>
+                    <div class="manager-features">
+                        <ul>
+                            <li>Cache d'images avec LRU eviction</li>
+                            <li>Tracking des components WeakMap</li>
+                            <li>Nettoyage auto des listeners</li>
+                            <li>Rapport d'utilisation mémoire</li>
+                            <li>Estimation de taille d'images</li>
+                        </ul>
+                    </div>
+                    <div class="code-example" style="margin-top: 1rem; background: #2a2d3e;">
+                        <div class="code-header">
+                            <span class="code-title">memory-manager.js</span>
+                            <button class="code-copy" onclick="copyCode('memorymanager-code')">Copier</button>
+                        </div>
+                        <pre style="margin: 0;"><code id="memorymanager-code" class="language-javascript">
+const memoryManager = new MemoryManager(framework);
+
+// Cache d'image
+const img = new Image();
+img.onload = () => {
+    memoryManager.cacheImage('/patient-photo.jpg', img);
+};
+img.src = '/patient-photo.jpg';
+
+// Récupération depuis cache
+const cached = memoryManager.getImage('/patient-photo.jpg');
+
+// Rapport mémoire
+console.log(memoryManager.getMemoryReport());
+// {
+//   imageCacheSize: "12.45 MB",
+//   imageCacheCount: 24,
+//   componentCount: 156,
+//   heapSize: "45.23 MB"
+// }
+                        </code></pre>
+                    </div>
+                </div>
+                
+                <!-- SecurityManager -->
+                <div class="manager-card">
+                    <div class="manager-icon">🔐</div>
+                    <h3>SecurityManager</h3>
+                    <p style="color: var(--gray); margin: 1rem 0;">
+                        Utilitaires de sécurité pour protection XSS, validation et rate limiting.
+                    </p>
+                    <div class="manager-features">
+                        <ul>
+                            <li>Sanitization d'input HTML</li>
+                            <li>Validation d'URL sécurisée</li>
+                            <li>Rate limiting configurable</li>
+                            <li>Protection XSS automatique</li>
+                            <li>Validation de protocol</li>
+                        </ul>
+                    </div>
+                    <div class="code-example" style="margin-top: 1rem; background: #2a2d3e;">
+                        <div class="code-header">
+                            <span class="code-title">security-manager.js</span>
+                            <button class="code-copy" onclick="copyCode('securitymanager-code')">Copier</button>
+                        </div>
+                        <pre style="margin: 0;"><code id="securitymanager-code" class="language-javascript">
+// Sanitization XSS
+const safeInput = SecurityManager.sanitizeInput(
+    'alert("xss")'
+);
+// Result: &lt;script&gt;alert("xss")&lt;/script&gt;
+
+// Validation URL
+const isValid = SecurityManager.validateUrl('https://medical-api.com/data');
+// true
+
+// Rate limiting
+const limitedFetch = SecurityManager.rateLimit(
+    fetchMedicalData,
+    10, // 10 requêtes max
+    60000 // par minute
+);
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mise à jour de la section Features -->
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title">🚀 Pourquoi CanvasFramework ?</h2>
+            <div class="features-grid">
+                <!-- Vos cards existantes... -->
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3 class="feature-title">70+ Composants UI</h3>
+                    <p>Accordion, AudioPlayer, Charts, DatePicker, Stepper, et plus de 50 autres composants avancés.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏗️</div>
+                    <h3 class="feature-title">Layout System</h3>
+                    <p>Grid, Column, Stack, Positioned - système de layout complet pour interfaces complexes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-title">Security & Error Handling</h3>
+                    <p>ErrorHandler avec Sentry, MemoryManager, SecurityManager avec sanitization et rate limiting.</p>
+                </div>
+                <!-- Autres cards existantes... -->
+            </div>
+        </div>
+    </section>
+<!-- Footer -->
     <footer>
         <div class="container">
             <div class="logo" style="font-size: 2rem; justify-content: center;">
@@ -1466,29 +2539,18 @@ npx cap sync
             
             <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
                 <p style="opacity: 0.6; font-size: 0.9rem;">
-                    &copy; 2024 CanvasFramework. Open source sous licence MIT.<br>
+                    &copy; 2026 CanvasFramework. Open source sous licence MIT.<br>
                     Conçu pour les applications mobiles exigeantes en performance.
                 </p>
             </div>
         </div>
     </footer>
-
+    <!-- Scripts existants -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
     <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-        
-        // Copy code function
+        // Fonction pour copier le code
         function copyCode(elementId) {
             const codeElement = document.getElementById(elementId);
             const text = codeElement.textContent;
@@ -1506,21 +2568,29 @@ npx cap sync
             });
         }
         
-        // Animate components on scroll
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Smooth scroll pour les nouvelles sections
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
         
+        // Animation des nouvelles sections
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
                     
-                    // Animate component cards
-                    if (entry.target.id === 'components' || entry.target.id === 'utilities') {
-                        const cards = entry.target.querySelectorAll('.component-card, .utility-card');
+                    // Animer les cards
+                    if (entry.target.id === 'advanced-components' || 
+                        entry.target.id === 'layout-components' || 
+                        entry.target.id === 'managers') {
+                        const cards = entry.target.querySelectorAll('.component-detail-card, .layout-card, .manager-card');
                         cards.forEach((card, index) => {
                             card.style.transitionDelay = `${index * 100}ms`;
                             card.style.opacity = '1';
@@ -1529,18 +2599,18 @@ npx cap sync
                     }
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
         
-        // Observe sections
-        document.querySelectorAll('section').forEach(section => {
+        // Observer les nouvelles sections
+        document.querySelectorAll('#advanced-components, #layout-components, #managers').forEach(section => {
             section.style.opacity = '0';
             section.style.transform = 'translateY(30px)';
             section.style.transition = 'all 0.6s ease';
             observer.observe(section);
         });
         
-        // Animate component cards initially
-        document.querySelectorAll('.component-card, .utility-card').forEach(card => {
+        // Animer les cards initialement
+        document.querySelectorAll('.component-detail-card, .layout-card, .manager-card').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             card.style.transition = 'all 0.4s ease';
