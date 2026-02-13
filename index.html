@@ -1095,7 +1095,7 @@
 	
 	
 	 <!-- Performance Section -->
-   <div class="performance">
+     <div class="performance">
     <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
         <h2 style="font-size: 3rem; text-align: center; margin-bottom: 2rem;">
             La performance<br>
@@ -1113,7 +1113,7 @@
                 <text x="750" y="30" fill="#48BB78" font-size="12" font-weight="bold">Flutter (incontesté)</text>
                 <text x="750" y="60" fill="#FFD700" font-size="12">CanvasFramework (honnête)</text>
                 <text x="750" y="90" fill="#667EEA" font-size="12">React Native</text>
-                <text x="750" y="120" fill="#F56565" font-size="12">Ionic</text>
+                
                 
                 <!-- Flutter - Nettement meilleur -->
                 <polyline points="0,300 100,270 200,235 300,170 400,90 500,50 600,30 700,18 800,10 900,5 1000,2" 
@@ -1131,17 +1131,18 @@
                 <polyline points="0,300 100,290 200,270 300,240 400,180 500,140 600,110 700,90 800,70 900,55 1000,45" 
                           fill="none" stroke="#667EEA" stroke-width="4"/>
                 
-                <!-- Ionic - Toujours dernier -->
-                <polyline points="0,300 100,300 200,300 300,300 400,300 500,300 600,300 700,300 800,300 900,300 1000,300" 
+                <!-- Ionic - DERNIER, TRÈS LOIN -->
+                <polyline points="0,300 100,310 200,320 300,330 400,340 500,350 600,360 700,370 800,380 900,390 1000,400" 
                           fill="none" stroke="#F56565" stroke-width="4" stroke-dasharray="5,5"/>
+                <text x="500" y="350" fill="#F56565" font-size="14" font-weight="bold">Ionic (DOM + WebView)</text>
                 
                 <!-- Lignes de référence -->
-                <line x1="0" y1="0" x2="0" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-                <line x1="200" y1="0" x2="200" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-                <line x1="400" y1="0" x2="400" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-                <line x1="600" y1="0" x2="600" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-                <line x1="800" y1="0" x2="800" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-                <line x1="1000" y1="0" x2="1000" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                <line x1="0" y1="0" x2="0" y2="400" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                <line x1="200" y1="0" x2="200" y2="400" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                <line x1="400" y1="0" x2="400" y2="400" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                <line x1="600" y1="0" x2="600" y2="400" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                <line x1="800" y1="0" x2="800" y2="400" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                <line x1="1000" y1="0" x2="1000" y2="400" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
             </svg>
         </div>
         
@@ -1220,7 +1221,7 @@
                         </li>
                         <li style="margin: 1rem 0; padding-left: 1.5rem; position: relative;">
                             <span style="position: absolute; left: 0; color: #48BB78;">✓</span>
-                            <strong>Toujours mieux qu'Ionic</strong> (large)
+                            <strong>Toujours mieux qu'Ionic</strong> (très large)
                         </li>
                     </ul>
                 </div>
@@ -1277,9 +1278,43 @@
                     <div style="height: 30px; background: rgba(245,101,101,0.2); border-radius: 15px; overflow: hidden;">
                         <div style="width: 67%; height: 100%; background: #F56565;"></div>
                     </div>
-                    <div style="margin-top: 0.3rem; font-size: 0.85rem; opacity: 0.7;">DOM + WebView - Moyen</div>
+                    <div style="margin-top: 0.3rem; font-size: 0.85rem; opacity: 0.7;">DOM + WebView - beaucoup trop lent</div>
                 </div>
             </div>
+        </div>
+        
+        <!-- Comparaison directe avec Ionic -->
+        <div style="background: linear-gradient(135deg, rgba(245,101,101,0.1), rgba(255,215,0,0.1)); padding: 2rem; border-radius: 20px; margin: 3rem 0;">
+            <h3 style="font-size: 1.8rem; margin-bottom: 1rem; text-align: center;">⚡ CanvasFramework vs Ionic</h3>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem; color: #FFD700; margin-bottom: 0.5rem;">⚡</div>
+                    <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">CanvasFramework</div>
+                    <div style="font-size: 2rem; color: #FFD700;">92-96%</div>
+                    <div style="margin-top: 1rem;">
+                        <div style="height: 20px; background: rgba(255,215,0,0.2); border-radius: 10px; overflow: hidden; width: 100%;">
+                            <div style="width: 94%; height: 100%; background: #FFD700;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem; color: #F56565; margin-bottom: 0.5rem;">🐌</div>
+                    <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Ionic</div>
+                    <div style="font-size: 2rem; color: #F56565;">60-75%</div>
+                    <div style="margin-top: 1rem;">
+                        <div style="height: 20px; background: rgba(245,101,101,0.2); border-radius: 10px; overflow: hidden; width: 100%;">
+                            <div style="width: 67%; height: 100%; background: #F56565;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 2rem; font-size: 1.1rem;">
+                <strong>L'écart est ÉNORME : 30% de performance en plus.</strong><br>
+                <span style="font-size: 0.9rem; opacity: 0.7;">Ionic traîne le DOM, nous on dessine directement sur canvas.</span>
+            </p>
         </div>
         
         <!-- Cas particulier : quand on est sous React Native -->
@@ -1359,7 +1394,7 @@
             <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto;">
                 Flutter est meilleur. On ne le rattrapera pas.<br>
                 React Native nous talonne, et parfois nous dépasse.<br>
-                <strong>Mais on fait du 60 FPS en production médicale.</strong><br>
+                <strong>Mais on écrase Ionic.</strong><br>
                 <span style="font-size: 1rem; opacity: 0.7; display: block; margin-top: 1rem;">
                     Et surtout, on fait tout ça en <strong>JavaScript pur</strong>, sans Dart, sans bridge, sans complexité inutile.<br>
                     C'est notre vrai combat.
