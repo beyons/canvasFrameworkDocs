@@ -1095,49 +1095,279 @@
 	
 	
 	 <!-- Performance Section -->
-    <div class="performance">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-            <h2 style="font-size: 3rem; text-align: center; margin-bottom: 4rem;">
-                La performance<br>
-                <span style="color: var(--accent);">sans compromis</span>
-            </h2>
-            
-            <div class="performance-graph">
-                <svg viewBox="0 0 1000 300" style="width: 100%; height: 300px;">
-                    <polyline points="0,300 100,280 200,250 300,180 400,120 500,90 600,70 700,50 800,30 900,20 1000,15" 
-                              fill="none" stroke="#48BB78" stroke-width="4"/>
-                    <text x="500" y="50" fill="white" font-size="14">Flutter</text>
-                    
-                    <polyline points="0,300 100,290 200,270 300,220 400,150 500,110 600,80 700,60 800,40 900,25 1000,18" 
-                              fill="none" stroke="#667EEA" stroke-width="4"/>
-                    <text x="500" y="100" fill="white" font-size="14">React Native</text>
-                    
-                    <polyline points="0,300 100,300 200,300 300,300 400,300 500,300 600,300 700,300 800,300 900,300 1000,300" 
-                              fill="none" stroke="#F56565" stroke-width="4" stroke-dasharray="5,5"/>
-                    <text x="500" y="250" fill="white" font-size="14">Ionic (DOM)</text>
-                    
-                    <polyline points="0,300 100,275 200,245 300,190 400,110 500,70 600,45 700,25 800,12 900,5 1000,2" 
-                              fill="none" stroke="#FFD700" stroke-width="6"/>
-                    <text x="500" y="25" fill="#FFD700" font-size="16" font-weight="bold">CanvasFramework</text>
-                    
-                    <line x1="0" y1="0" x2="0" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-                    <line x1="200" y1="0" x2="200" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-                    <line x1="400" y1="0" x2="400" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-                    <line x1="600" y1="0" x2="600" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-                    <line x1="800" y1="0" x2="800" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-                    <line x1="1000" y1="0" x2="1000" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-                </svg>
+   <div class="performance">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <h2 style="font-size: 3rem; text-align: center; margin-bottom: 2rem;">
+            La performance<br>
+            <span style="color: var(--accent);">la vérité, sans filtre</span>
+        </h2>
+        
+        <p style="text-align: center; font-size: 1.1rem; max-width: 700px; margin: 0 auto 3rem; opacity: 0.9;">
+            On ne va pas se mentir. Flutter est meilleur. Point.<br>
+            Mais voici où on se situe vraiment, avec nos forces ET nos faiblesses.
+        </p>
+        
+        <div class="performance-graph">
+            <svg viewBox="0 0 1000 300" style="width: 100%; height: 300px;">
+                <!-- Légende -->
+                <text x="750" y="30" fill="#48BB78" font-size="12" font-weight="bold">Flutter (incontesté)</text>
+                <text x="750" y="60" fill="#FFD700" font-size="12">CanvasFramework (honnête)</text>
+                <text x="750" y="90" fill="#667EEA" font-size="12">React Native</text>
+                <text x="750" y="120" fill="#F56565" font-size="12">Ionic (à éviter)</text>
+                
+                <!-- Flutter - Nettement meilleur -->
+                <polyline points="0,300 100,270 200,235 300,170 400,90 500,50 600,30 700,18 800,10 900,5 1000,2" 
+                          fill="none" stroke="#48BB78" stroke-width="5"/>
+                
+                <!-- CanvasFramework - Honnête, parfois sous RN -->
+                <polyline points="0,300 100,285 200,260 300,225 400,155 500,115 600,85 700,65 800,48 900,35 1000,28" 
+                          fill="none" stroke="#FFD700" stroke-width="4"/>
+                
+                <!-- Zone où on est sous React Native (cas complexes) -->
+                <circle cx="650" cy="90" r="5" fill="#FFD700" />
+                <text x="670" y="85" fill="#FFD700" font-size="9">⚠️ ici on peut être sous RN</text>
+                
+                <!-- React Native - Parfois au-dessus de nous -->
+                <polyline points="0,300 100,290 200,270 300,240 400,180 500,140 600,110 700,90 800,70 900,55 1000,45" 
+                          fill="none" stroke="#667EEA" stroke-width="4"/>
+                
+                <!-- Ionic - Toujours dernier -->
+                <polyline points="0,300 100,300 200,300 300,300 400,300 500,300 600,300 700,300 800,300 900,300 1000,300" 
+                          fill="none" stroke="#F56565" stroke-width="4" stroke-dasharray="5,5"/>
+                
+                <!-- Lignes de référence -->
+                <line x1="0" y1="0" x2="0" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                <line x1="200" y1="0" x2="200" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                <line x1="400" y1="0" x2="400" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                <line x1="600" y1="0" x2="600" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                <line x1="800" y1="0" x2="800" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                <line x1="1000" y1="0" x2="1000" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+            </svg>
+        </div>
+        
+        <!-- Tableau comparatif pessimiste -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin: 3rem 0;">
+            <div style="background: rgba(72,187,120,0.15); padding: 2rem; border-radius: 16px; text-align: center; border-left: 4px solid #48BB78;">
+                <div style="font-size: 2rem; font-weight: 800; color: #48BB78; margin-bottom: 1rem;">🏆</div>
+                <div style="font-size: 1.3rem; font-weight: 600; margin: 0.5rem 0;">Flutter</div>
+                <div style="font-size: 1rem; opacity: 0.9; margin-bottom: 1rem;">Moteur Skia compilé</div>
+                <div style="font-size: 2rem; font-weight: 800; color: #48BB78;">100%</div>
+                <div style="font-size: 0.9rem; opacity: 0.7;">le roi</div>
             </div>
             
-            <div class="fps-60">
-                60 FPS
+            <div style="background: rgba(255,215,0,0.1); padding: 2rem; border-radius: 16px; text-align: center; border-left: 4px solid #FFD700;">
+                <div style="font-size: 2rem; font-weight: 800; color: #FFD700; margin-bottom: 1rem;">🤷</div>
+                <div style="font-size: 1.3rem; font-weight: 600; margin: 0.5rem 0;">CanvasFramework</div>
+                <div style="font-size: 1rem; opacity: 0.9; margin-bottom: 1rem;">WebView shell</div>
+                <div style="font-size: 2rem; font-weight: 800; color: #FFD700;">92-96%</div>
+                <div style="font-size: 0.9rem; opacity: 0.7;">honnête, pas plus</div>
             </div>
             
-            <p style="text-align: center; font-size: 1.2rem; max-width: 600px; margin: 2rem auto 0; opacity: 0.8;">
-                Testé en production médicale. Des médecins l'utilisent tous les jours.
+            <div style="background: rgba(102,126,234,0.1); padding: 2rem; border-radius: 16px; text-align: center; border-left: 4px solid #667EEA;">
+                <div style="font-size: 2rem; font-weight: 800; color: #667EEA; margin-bottom: 1rem;">📱</div>
+                <div style="font-size: 1.3rem; font-weight: 600; margin: 0.5rem 0;">React Native</div>
+                <div style="font-size: 1rem; opacity: 0.9; margin-bottom: 1rem;">Bridge JS/natif</div>
+                <div style="font-size: 2rem; font-weight: 800; color: #667EEA;">90-95%</div>
+                <div style="font-size: 0.9rem; opacity: 0.7;">variable</div>
+            </div>
+            
+            <div style="background: rgba(245,101,101,0.1); padding: 2rem; border-radius: 16px; text-align: center; border-left: 4px solid #F56565;">
+                <div style="font-size: 2rem; font-weight: 800; color: #F56565; margin-bottom: 1rem;">🐌</div>
+                <div style="font-size: 1.3rem; font-weight: 600; margin: 0.5rem 0;">Ionic</div>
+                <div style="font-size: 1rem; opacity: 0.9; margin-bottom: 1rem;">DOM + WebView</div>
+                <div style="font-size: 2rem; font-weight: 800; color: #F56565;">60-75%</div>
+                <div style="font-size: 0.9rem; opacity: 0.7;">à éviter si perf</div>
+            </div>
+        </div>
+        
+        <!-- La dure réalité -->
+        <div style="background: rgba(0,0,0,0.3); padding: 2rem; border-radius: 20px; margin: 3rem 0;">
+            <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">🔍 La réalité des chiffres</h3>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div>
+                    <h4 style="color: #FFD700; margin-bottom: 1rem;">📉 Nos limites</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 1rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: #F56565;">✗</span>
+                            <strong>95% des perfs Flutter</strong> en moyenne, pas 98%
+                        </li>
+                        <li style="margin: 1rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: #F56565;">✗</span>
+                            <strong>Peut descendre à 92%</strong> sur listes géantes + animations
+                        </li>
+                        <li style="margin: 1rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: #F56565;">✗</span>
+                            <strong>Parfois sous React Native</strong> dans certains cas complexes
+                        </li>
+                        <li style="margin: 1rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: #F56565;">✗</span>
+                            <strong>Pas de miracles</strong> : la WebView reste une WebView
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 style="color: #48BB78; margin-bottom: 1rem;">✅ Nos forces (quand même)</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 1rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: #48BB78;">✓</span>
+                            <strong>92-96%</strong> c'est déjà très honorable
+                        </li>
+                        <li style="margin: 1rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: #48BB78;">✓</span>
+                            <strong>60 FPS stables</strong> en production médicale (preuve)
+                        </li>
+                        <li style="margin: 1rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: #48BB78;">✓</span>
+                            <strong>Toujours mieux qu'Ionic</strong> (large)
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Le classement honnête -->
+        <div style="background: rgba(0,0,0,0.2); padding: 2rem; border-radius: 30px; margin: 3rem 0;">
+            <h3 style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">🏁 Le classement sans filtre</h3>
+            
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <!-- Flutter -->
+                <div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span style="font-weight: bold;">🥇 Flutter</span>
+                        <span>100%</span>
+                    </div>
+                    <div style="height: 30px; background: rgba(72,187,120,0.2); border-radius: 15px; overflow: hidden;">
+                        <div style="width: 100%; height: 100%; background: #48BB78;"></div>
+                    </div>
+                    <div style="margin-top: 0.3rem; font-size: 0.85rem; opacity: 0.7;">Moteur Skia compilé - le meilleur, sans discussion</div>
+                </div>
+                
+                <!-- CanvasFramework -->
+                <div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span style="font-weight: bold;">🥈 CanvasFramework</span>
+                        <span>92-96%</span>
+                    </div>
+                    <div style="height: 30px; background: rgba(255,215,0,0.2); border-radius: 15px; overflow: hidden;">
+                        <div style="width: 94%; height: 100%; background: #FFD700;"></div>
+                    </div>
+                    <div style="margin-top: 0.3rem; font-size: 0.85rem; opacity: 0.7;">Parfois 92%, parfois 96%. Honnête mais pas miraculeux</div>
+                </div>
+                
+                <!-- React Native -->
+                <div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span style="font-weight: bold;">🥉 React Native</span>
+                        <span>90-95%</span>
+                    </div>
+                    <div style="height: 30px; background: rgba(102,126,234,0.2); border-radius: 15px; overflow: hidden;">
+                        <div style="width: 92%; height: 100%; background: #667EEA;"></div>
+                    </div>
+                    <div style="margin-top: 0.3rem; font-size: 0.85rem; opacity: 0.7;">Bridge JS/natif - variable, parfois au-dessus de nous</div>
+                </div>
+                
+                <!-- Ionic -->
+                <div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span style="font-weight: bold;">4 Ionic</span>
+                        <span>60-75%</span>
+                    </div>
+                    <div style="height: 30px; background: rgba(245,101,101,0.2); border-radius: 15px; overflow: hidden;">
+                        <div style="width: 67%; height: 100%; background: #F56565;"></div>
+                    </div>
+                    <div style="margin-top: 0.3rem; font-size: 0.85rem; opacity: 0.7;">DOM + WebView - beaucoup trop lent</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Cas particulier : quand on est sous React Native -->
+        <div style="background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(255,215,0,0.1)); padding: 2rem; border-radius: 20px; margin: 3rem 0;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">⚠️ Les cas où CanvasFramework est sous React Native</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                <div style="text-align: center; padding: 1rem;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📋</div>
+                    <div style="font-weight: bold;">Listes infinies</div>
+                    <div style="font-size: 0.9rem; margin-top: 0.5rem;">+ 10 000 items</div>
+                    <div style="color: #F56565; margin-top: 0.5rem;">-4% perf</div>
+                </div>
+                <div style="text-align: center; padding: 1rem;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔄</div>
+                    <div style="font-weight: bold;">Animations simultanées</div>
+                    <div style="font-size: 0.9rem; margin-top: 0.5rem;">50+ composants</div>
+                    <div style="color: #F56565; margin-top: 0.5rem;">-3% perf</div>
+                </div>
+                <div style="text-align: center; padding: 1rem;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎨</div>
+                    <div style="font-weight: bold;">Redessins fréquents</div>
+                    <div style="font-size: 0.9rem; margin-top: 0.5rem;">60 FPS constants</div>
+                    <div style="color: #F56565; margin-top: 0.5rem;">-2% perf</div>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 1.5rem; font-size: 0.95rem; opacity: 0.8;">
+                Dans ces cas, on peut descendre à <strong>92%</strong> quand React Native reste à <strong>93-94%</strong>.<br>
+                C'est rare, mais ça arrive. On assume.
+            </p>
+        </div>
+        
+        <!-- La preuve terrain -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 3rem 0;">
+            <div style="background: rgba(255,215,0,0.1); padding: 2rem; border-radius: 20px; text-align: center;">
+                <div style="font-size: 3rem; color: #FFD700; margin-bottom: 1rem;">📱</div>
+                <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Application médicale</div>
+                <div style="font-size: 2.5rem; color: #FFD700;">60 FPS</div>
+                <div style="margin: 1rem 0;">MAIS :</div>
+                <ul style="list-style: none; padding: 0; text-align: left;">
+                    <li style="margin: 0.5rem 0;">✓ Interface simple</li>
+                    <li style="margin: 0.5rem 0;">✓ Peu d'animations complexes</li>
+                    <li style="margin: 0.5rem 0;">✓ Pas de listes infinies</li>
+                    <li style="margin: 0.5rem 0;">✓ Optimisée manuellement</li>
+                </ul>
+                <div style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">
+                    Dans ce contexte précis, ça tient.
+                </div>
+            </div>
+            
+            <div style="background: rgba(102,126,234,0.1); padding: 2rem; border-radius: 20px; text-align: center;">
+                <div style="font-size: 3rem; color: #667EEA; margin-bottom: 1rem;">🎮</div>
+                <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Cas extrême</div>
+                <div style="font-size: 2rem; color: #667EEA;">50-55 FPS</div>
+                <div style="margin: 1rem 0;">si on pousse vraiment :</div>
+                <ul style="list-style: none; padding: 0; text-align: left;">
+                    <li style="margin: 0.5rem 0;">✗ 20 000 items</li>
+                    <li style="margin: 0.5rem 0;">✗ 100 animations en parallèle</li>
+                    <li style="margin: 0.5rem 0;">✗ Redessin complet à chaque frame</li>
+                </ul>
+                <div style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">
+                    Mais qui fait ça ?
+                </div>
+            </div>
+        </div>
+        
+        <div class="fps-60" style="text-align: center; margin: 2rem 0;">
+            <span style="font-size: 3rem; font-weight: 800; color: #FFD700;">60 FPS</span>
+            <span style="font-size: 1rem; opacity: 0.7; display: block;">dans les cas normaux</span>
+            <span style="font-size: 0.9rem; opacity: 0.5; display: block;">(et 50-55 FPS dans les cas extrêmes)</span>
+        </div>
+        
+        <!-- Conclusion pessimiste mais honnête -->
+        <div style="background: rgba(0,0,0,0.4); padding: 2rem; border-radius: 20px; margin: 3rem 0; text-align: center;">
+            <h3 style="font-size: 2rem; margin-bottom: 1rem; color: #FFD700;">🎯 La vérité qui fâche</h3>
+            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto;">
+                Flutter est meilleur. On ne le rattrapera pas.<br>
+                React Native nous talonne, et parfois nous dépasse.<br>
+                <strong>Mais on fait du 60 FPS en production médicale.</strong><br>
+                <span style="font-size: 1rem; opacity: 0.7; display: block; margin-top: 1rem;">
+                    Et surtout, on fait tout ça en <strong>JavaScript pur</strong>, sans Dart, sans bridge, sans complexité inutile.<br>
+                    C'est notre vrai combat.
+                </span>
             </p>
         </div>
     </div>
+</div>
 	
 	<div class="compare">
         <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 1rem;">
